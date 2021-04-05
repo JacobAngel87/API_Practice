@@ -13,7 +13,7 @@ import org.json.JSONObject;
 
 public class DogAPI {
     private StringRequest apiCall;
-    private final String url = "https://dog.ceo/api/breeds/image/random";
+    private final String url = "https://randomuser.me/api";
     private JSONObject results;
 
     public DogAPI() {
@@ -25,6 +25,7 @@ public class DogAPI {
                 response -> {
                     try {
                         results = new JSONObject(response).getJSONObject("list");
+                        Log.e("JSON DATA", "" + results);
                     }
                     catch (JSONException e) {
                         // TODO Error Catching
