@@ -3,49 +3,54 @@ package com.example.api_practice;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.util.JsonReader;
-import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.TextView;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity {
-    private String data;
+
+    /***************
+    // -- Pain -- \\
+    ***************/
+
     private ImageView dogImg;
+    private ApiRequester apiRequester;
+    private final String apiURL = "https://dog.ceo/api/breeds/image/random";
+    private Button changeDogBtn;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         dogImg = findViewById(R.id.imgDog);
-        final TextView textView = (TextView) findViewById(R.id.txt_data);
+        changeDogBtn = findViewById(R.id.btnChange);
+        changeDogBtn.setVisibility(View.INVISIBLE);
+        apiRequester = new ApiRequester(this);
 
-        RequestQueue queue = Volley.newRequestQueue(this);
-
-        String url ="https://dog.ceo/api/breeds/image/random";
-        // Request a string response from the provided URL.
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
-                response -> {
-                    try {
-                        data = new JSONObject(response).getString("message");
-                    } catch (JSONException e) {
-                        e.printStackTrace();
+        changeDogBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                apiRequester.requestAPI(apiURL, new VolleyCallBack() {
+                    @Override
+                    public void onSuccess() {
+                        String data = apiRequester.getData();
+                        try {
+                            String imgUrl = new JSONObject(data).getString("message");
+                            Picasso.get().load(imgUrl).into(dogImg);
+                            if(changeDogBtn.getVisibility() == View.INVISIBLE)
+                                changeDogBtn.setVisibility(View.VISIBLE);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                     }
-                    textView.setText(data);
-                    Picasso.get().load(data).into(dogImg);
-                }, error -> textView.setText("That didn't work!"));
-
-        // Add the request to the RequestQueue.
-        queue.add(stringRequest);
+                });
+            }
+        });
+        changeDogBtn.callOnClick();
     }
 }
