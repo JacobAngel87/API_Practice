@@ -14,9 +14,11 @@ import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity {
 
-    /***************
-    // -- Pain -- \\
-    ***************/
+    /* All of the code in this class is subject to change and will not be documented
+       All we are doing is getting an imageView and a button and defining those elements.
+       We then add an onClick eventListener that gets a request from the dog.ceo API.
+       After we get the data back we find the message from the json and then use Picasso to put
+       the img into our image view. */
 
     private ImageView dogImg;
     private ApiRequester apiRequester;
