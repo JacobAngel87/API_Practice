@@ -27,8 +27,8 @@ public class ApiRequester {
     // Requests an API call from the user with a URL provided as a parameter.
     /* Uses the VolleyCallBack interface to allow the user to execute code after
          the call has completed inside of the onSuccess method */
-    public void requestAPI(String url, final VolleyCallBack callBack) {
-        stringRequest = new StringRequest(Request.Method.GET, url,
+    public void requestAPIGet(String url, final VolleyCallBack callBack) {
+        stringRequest = new StringRequest(Request.Method.POST, url,
                 // If the data was returned from the API
                 response -> {
                     // Store the data returned

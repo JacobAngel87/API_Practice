@@ -4,55 +4,85 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ImageView;
+import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.Toast;
 
-import com.android.volley.toolbox.StringRequest;
-import com.squareup.picasso.Picasso;
-
-import org.json.JSONException;
-import org.json.JSONObject;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    /* All of the code in this class is subject to change and will not be documented
-       All we are doing is getting an imageView and a button and defining those elements.
-       We then add an onClick eventListener that gets a request from the dog.ceo API.
-       After we get the data back we find the message from the json and then use Picasso to put
-       the img into our image view. */
-
-    private ImageView dogImg;
     private ApiRequester apiRequester;
-    private final String apiURL = "https://dog.ceo/api/breeds/image/random";
-    private Button changeDogBtn;
+    private List<Meme> memes;
+    private Spinner memeSpinner;
+    private Button submitButton;
+    private final String getMemesUrl = "https://api.imgflip.com/get_memes";
+    private EditText topText;
+    private EditText bottomText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        dogImg = findViewById(R.id.imgDog);
-        changeDogBtn = findViewById(R.id.btnChange);
-        changeDogBtn.setVisibility(View.INVISIBLE);
+        memeSpinner = findViewById(R.id.spnMemes);
+        submitButton = findViewById(R.id.btnSubmit);
+        topText = findViewById(R.id.editTextTopText);
+        bottomText = findViewById(R.id.editTextBottomText);
         apiRequester = new ApiRequester(this);
+        memes = new ArrayList<Meme>();
+        makeMemes();
+        addMemesToSpinner();
 
-        changeDogBtn.setOnClickListener(new View.OnClickListener() {
+        // Meme Img Preview
+        memeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onClick(View v) {
-                apiRequester.requestAPI(apiURL, new VolleyCallBack() {
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                apiRequester.requestAPIGet(getMemesUrl, new VolleyCallBack() {
                     @Override
                     public void onSuccess(String data) {
-                        try {
-                            String imgUrl = new JSONObject(data).getString("message");
-                            Picasso.get().load(imgUrl).into(dogImg);
-                            if(changeDogBtn.getVisibility() == View.INVISIBLE)
-                                changeDogBtn.setVisibility(View.VISIBLE);
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
+
                     }
                 });
             }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
         });
-        changeDogBtn.callOnClick();
+        submitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String topTextInput = topText.getText().toString();
+                String bottomTextInput = bottomText.getText().toString();
+                int memePosition = memeSpinner.getSelectedItemPosition();
+                int memeID = memes.get(memePosition).id;
+                if(topTextInput.length() < 1 || bottomTextInput.length() < 1) {
+                    Toast.makeText(getApplicationContext(), "Fields cannot be blank", Toast.LENGTH_LONG).show();
+                    return;
+                }
+            }
+        });
+    }
+
+    private void makeMemes() {
+        memes.add(new Meme("Distracted Boyfriend", 112126428));
+        memes.add(new Meme("Batman Slapping Robin", 438680));
+        memes.add(new Meme("Expanding Brain", 93895088));
+        memes.add(new Meme("Grumpy Cat", 405658));
+    }
+    private void addMemesToSpinner() {
+        List<String> tmpNames = new ArrayList<>();
+        for(int i = 0; i < memes.size(); i++) {
+            tmpNames.add(memes.get(i).name);
+        }
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+                this, android.R.layout.simple_spinner_item, tmpNames);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        Spinner sItems = findViewById(R.id.spnMemes);
+        sItems.setAdapter(adapter);
     }
 }
