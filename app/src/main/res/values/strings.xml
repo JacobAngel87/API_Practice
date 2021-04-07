@@ -1,5 +1,4 @@
 <resources>
     <string name="app_name">API_Practice</string>
     <string name="change_dog">Change Dog!</string>
-    <string name="memeGenerator">meme generator</string>
 </resources>
