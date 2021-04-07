@@ -34,7 +34,7 @@ public class ApiRequester {
                     // Store the data returned
                     data = response;
                     // Callback the onSuccess method
-                    callBack.onSuccess();
+                    callBack.onSuccess(data);
                 },
                 // If there was no data returned
                 error -> data = null);

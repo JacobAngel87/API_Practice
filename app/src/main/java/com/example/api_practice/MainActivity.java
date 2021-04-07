@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import com.android.volley.toolbox.StringRequest;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
@@ -39,8 +40,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 apiRequester.requestAPI(apiURL, new VolleyCallBack() {
                     @Override
-                    public void onSuccess() {
-                        String data = apiRequester.getData();
+                    public void onSuccess(String data) {
                         try {
                             String imgUrl = new JSONObject(data).getString("message");
                             Picasso.get().load(imgUrl).into(dogImg);
