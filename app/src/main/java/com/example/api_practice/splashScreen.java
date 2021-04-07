@@ -15,11 +15,17 @@ public class splashScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
 //      set the timer
-        TimerTask task = ()
+//        TimerTask task = ()
+//            finish();
+//            startActivity(new Intent(splashScreen.this, MainActivity.class));
+//        }
+//        Timer opening = new Timer();
+
+    TimerTask task =() {
             finish();
             startActivity(new Intent(splashScreen.this, MainActivity.class));
-        }
+        };
         Timer opening = new Timer();
-        opening.schedule(task,5000)
+        opening.schedule(task,500);
     }
 }
