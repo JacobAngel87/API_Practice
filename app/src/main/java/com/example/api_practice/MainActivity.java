@@ -35,22 +35,18 @@ public class MainActivity extends AppCompatActivity {
         changeDogBtn.setVisibility(View.INVISIBLE);
         apiRequester = new ApiRequester(this);
 
+
+
         changeDogBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                apiRequester.requestAPI(apiURL, new VolleyCallBack() {
+
+                // parse data
+                apiRequester.requestAPI("https://api.imgflip.com/caption_image", new VolleyCallBack() {
                     @Override
                     public void onSuccess(String data) {
-                        try {
-                            String imgUrl = new JSONObject(data).getString("message");
-                            Picasso.get().load(imgUrl).into(dogImg);
-                            if(changeDogBtn.getVisibility() == View.INVISIBLE)
-                                changeDogBtn.setVisibility(View.VISIBLE);
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                });
+
+                    }});
             }
         });
         changeDogBtn.callOnClick();
