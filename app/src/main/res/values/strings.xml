@@ -1,7 +1,7 @@
 <resources>
-    <string name="app_name">API_Practice</string>
+    <string name="app_name">Meme Generator</string>
     <string name="meme_img_desc">Sample Meme Image</string>
-    <string name="top_text">Top Text</string>
-    <string name="bottom_text">Bottom Text</string>
+    <string name="top_text">First Text</string>
+    <string name="bottom_text">Second Text</string>
     <string name="generate_button">Generate Meme!</string>
 </resources>

@@ -4,18 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#A7DCE8"
     tools:context=".MainActivity">
 
     <ImageView
         android:id="@+id/imgMemePreview"
-        android:layout_width="304dp"
-        android:layout_height="256dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="221dp"
         android:contentDescription="@string/meme_img_desc"
         android:scaleType="fitXY"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@tools:sample/avatars" />
 
@@ -23,9 +21,8 @@
         android:id="@+id/spnMemes"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="81dp"
-        android:gravity="center"
-        android:spinnerMode="dropdown"
+        android:background="#9774D5"
+        android:spinnerMode="dialog"
         android:textAlignment="center"
         android:textDirection="anyRtl"
         app:layout_constraintEnd_toEndOf="parent"
@@ -35,12 +32,12 @@
         android:id="@+id/txtTopText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="64dp"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="20dp"
         android:text="@string/top_text"
         android:textColor="@color/black"
         android:textSize="24sp"
         android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spnMemes" />
 
@@ -48,51 +45,51 @@
         android:id="@+id/txtBottomText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="52dp"
+        android:layout_marginTop="20dp"
         android:text="@string/bottom_text"
         android:textColor="@color/black"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintBaseline_toBaselineOf="@+id/txtTopText"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTopText" />
 
     <EditText
         android:id="@+id/editTextTopText"
-        android:layout_width="149dp"
+        android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="20dp"
         android:autofillHints="no"
         android:ems="10"
         android:gravity="center"
         android:hint="@string/top_text"
         android:inputType="textPersonName"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtTopText" />
+        app:layout_constraintTop_toBottomOf="@+id/txtTopText"
+        tools:layout_editor_absoluteX="262dp" />
 
     <EditText
         android:id="@+id/editTextBottomText"
-        android:layout_width="149dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="44dp"
-        android:layout_marginEnd="40dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="20dp"
         android:autofillHints="no"
         android:ems="10"
         android:gravity="center"
         android:hint="@string/bottom_text"
         android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtBottomText" />
+        app:layout_constraintTop_toBottomOf="@+id/txtBottomText"
+        tools:layout_editor_absoluteX="138dp" />
 
     <Button
         android:id="@+id/btnSubmit"
-        android:layout_width="150dp"
+        android:layout_width="0dp"
         android:layout_height="71dp"
-        android:layout_marginBottom="56dp"
+        android:layout_marginTop="20dp"
         android:text="@string/generate_button"
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextBottomText" />
 </androidx.constraintlayout.widget.ConstraintLayout>
