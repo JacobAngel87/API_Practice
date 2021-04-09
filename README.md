@@ -1,6 +1,6 @@
 ## Carls Notes
 
-I consolidated a bunch of code in the `Apirequester` class. The GET method was combind with the POST method, because they did exactly the same thing. All methods for interacting with the API are inside the `ApiRequester` class.
+I consolidated a bunch of code in the `Apirequester` class. The GET method was combine with the POST method, because they did exactly the same thing. All methods for interacting with the API are inside the `ApiRequester` class.
 
 I edited the VolleyCallBack to use generics so it could handle multiple datatypes.
 
