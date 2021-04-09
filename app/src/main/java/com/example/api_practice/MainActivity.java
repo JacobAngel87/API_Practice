@@ -34,8 +34,6 @@ public class MainActivity extends AppCompatActivity {
     private EditText topText;
     private EditText bottomText;
     private ImageView memeImg;
-    // get_memes Api URL
-    private final String getMemesUrl = "https://api.imgflip.com/get_memes";
     // JSON array of memes that will be returned from the api
     private JSONArray memesJSON;
 
@@ -107,7 +105,13 @@ public class MainActivity extends AppCompatActivity {
             // Make sure that the user input isn't blank
             if(topTextInput.length() < 1 || bottomTextInput.length() < 1) return;
 
-            // TODO Make a post request with the above data and send the results to a new activity
+            apiRequester.getMeme(memeID, topTextInput, bottomTextInput, new VolleyCallBack() {
+                @Override
+                public void onSuccess(Object data) {
+                    String url = (String) data;
+                    //TODO send this url to a new activity and use Picasso to put it into an image view
+                }
+            });
 
         });
         // Calls our onItemSelectedListener so that we start with an image
