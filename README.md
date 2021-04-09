@@ -19,8 +19,9 @@ To request a meme run this sample code:
 ```java
 apiRequester.getMemeList(new VolleyCallBack<JSONArray>(){
     @Override
-    public void onSuccess(JSONArray memeList) {
-        System.out.println("JSONArray of Meme Objects are Here");
+    public void onSuccess(JSONArray memesJSON) {
+        // a JSONArray of memes from the API is stored in memesJSON
+        // pass memesJSON to makeMemes()
     }
 });
 ```
