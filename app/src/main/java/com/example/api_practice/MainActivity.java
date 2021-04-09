@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -115,14 +116,11 @@ public class MainActivity extends AppCompatActivity {
     // Gets all of the memes from the API
     private void getMemesFromAPI() {
         // Make a GET request
-        apiRequester.requestAPIGet(getMemesUrl, data -> {
-            try {
-                // Put the data we got from the request into our variable
-                memesJSON = new JSONObject(data).getJSONObject("data").getJSONArray("memes");
-                // Add the data into our memes list
+        apiRequester.getMemeList(new VolleyCallBack() {
+            @Override
+            public void onSuccess(Object data) {
+                memesJSON = (JSONArray) data;
                 makeMemes();
-            } catch (JSONException e) { // Catches any JSON parsing error
-                e.printStackTrace();
             }
         });
     }

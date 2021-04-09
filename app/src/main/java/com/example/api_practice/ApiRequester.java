@@ -60,7 +60,7 @@ public class ApiRequester {
 
     // This method receives the user's request and starts the post request. Once finished, the method calls the callBack method to return the results to the user
     // null is returned if there is an error
-    public void getMeme(int memeId, String topText, String bottomText, final VolleyCallBack callBack){
+    public void getMeme(int memeId, String topText, String bottomText, final VolleyCallBack callBack) {
         // Add the API required headers to the Request
         headers.put("template_id", ""+memeId);
         headers.put("text0", topText);
