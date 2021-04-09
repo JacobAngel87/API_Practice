@@ -2,9 +2,9 @@
 
 I consolidated a bunch of code in the `Apirequester` class. The GET method was combind with the POST method, because they did exactly the same thing. All methods for interacting with the API are inside the `ApiRequester` class.
 
-A new Interface was created: `MemeVolleyCallback`
+I edited the VolleyCallBack to use generics so it could handle multiple datatypes.
 
-I created a method to get a JSONArray of Memes from the API. This does exactly what `getMemesFromAPI()` in the `MainActivity` does, but it makes more sense for both API requests to be handeled the same way. The return should be passed to `makeMemes()` in the `MainActivity`. To get the JSONArray of available memes run this code.:
+I created a method to get a JSONArray of Memes from the API. This does exactly what `getMemesFromAPI()` in the `MainActivity` does, but it makes more sense for both API requests to be handled the same way. The return should be passed to `makeMemes()` in the `MainActivity`. To get the JSONArray of available memes run this code.:
 ```java
 apiRequester.getMemeList(new MemeVolleyCallback(){
     @Override
@@ -17,11 +17,10 @@ apiRequester.getMemeList(new MemeVolleyCallback(){
 
 To request a meme run this sample code:
 ```java
-apiRequester.getMeme(101470, "this is text on top", "this is bottom text", new VolleyCallBack() {
+apiRequester.getMemeList(new VolleyCallBack<JSONArray>(){
     @Override
-    public void onSuccess(String imageUrl) {
-        // the image url to jpg is stored in imageUrl
-        // null is returned if error
+    public void onSuccess(JSONArray memeList) {
+        System.out.println("JSONArray of Meme Objects are Here");
     }
 });
 ```
