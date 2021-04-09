@@ -1,0 +1,9 @@
+<resources>
+    <style name ="them" parent="Theme.AppCompat.Light.DarkActionBar">
+
+    </style>
+<!--    splash screen theme-->
+    <style name="splashScreen" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@drawable/splash</item>
+    </style>
+</resources>
