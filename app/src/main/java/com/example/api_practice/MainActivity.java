@@ -1,7 +1,10 @@
 package com.example.api_practice;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
+import android.Manifest;
+import android.content.Intent;
 import android.os.Bundle;
 
 import android.util.Log;
@@ -109,7 +112,9 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onSuccess(Object data) {
                     String url = (String) data;
-                    //TODO send this url to a new activity and use Picasso to put it into an image view
+                    Intent resultsScreen = new Intent(MainActivity.this, MemeScreen.class);
+                    resultsScreen.putExtra("IMG_URL", url);
+                    startActivity(resultsScreen);
                 }
             });
 

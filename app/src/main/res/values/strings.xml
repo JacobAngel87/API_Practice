@@ -4,4 +4,5 @@
     <string name="top_text">First Text</string>
     <string name="bottom_text">Second Text</string>
     <string name="generate_button">Generate Meme!</string>
+    <string name="results_meme_desc">Generated Meme Image</string>
 </resources>
