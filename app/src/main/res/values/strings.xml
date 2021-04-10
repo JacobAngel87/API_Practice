@@ -1,5 +1,8 @@
 <resources>
-    <string name="app_name">API_Practice</string>
-    <string name="change_dog">Change Dog!</string>
-    <string name="memesGenerator">memes generator</string>
+    <string name="app_name">Meme Generator</string>
+    <string name="meme_img_desc">Sample Meme Image</string>
+    <string name="top_text">First Text</string>
+    <string name="bottom_text">Second Text</string>
+    <string name="generate_button">Generate Meme!</string>
+    <string name="results_meme_desc">Generated Meme Image</string>
 </resources>
