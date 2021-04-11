@@ -12,7 +12,7 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
     </style>
-    <style name="splashthem" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="splashthem" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowBackground">@drawable/backgroundsplashscreen</item>
     </style>
 </resources>
