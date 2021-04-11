@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 // Check if the json has stuff in it
                 if(memesJSON == null) {
-                    // If it doesn't go get the data and return out of this function
+                    // If it doesn't, go get the data and return out of this function
                     getMemesFromAPI();
                     return;
                 }

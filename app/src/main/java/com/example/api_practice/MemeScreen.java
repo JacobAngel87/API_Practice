@@ -16,9 +16,12 @@ public class MemeScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_meme_screen);
         memeImg = findViewById(R.id.imgMeme);
+        // Get the meme url
         Bundle extras = getIntent().getExtras();
         imgURL = extras.getString("IMG_URL");
+        // Make sure there is something there
         if(imgURL != null) {
+            // Put that url into the imageView
             Picasso.get().load(imgURL).into(memeImg);
         }
     }

@@ -85,7 +85,7 @@ public class ApiRequester {
 
     // This method requests a list of the top 100 memes from the API.
     // This list will populate a Spinner widget on the MainActivity
-    public void getMemeList(final VolleyCallBack callBack){
+    public void getMemeList(final VolleyCallBack callBack) {
         // Call the requestAPI method to send a GET request to the API
         requestAPI(Request.Method.GET, MEME_LIST_URL, data -> {
                 try {
@@ -98,6 +98,4 @@ public class ApiRequester {
             }
         );
     }
-
-
 }
