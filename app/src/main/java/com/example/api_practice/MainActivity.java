@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -33,7 +34,6 @@ public class MainActivity extends AppCompatActivity {
     private List<Meme> memes;
     // UI Elements
     private Spinner memeSpinner;
-    private Button submitButton;
     private EditText topText;
     private EditText bottomText;
     private ImageView memeImg;
@@ -47,7 +47,6 @@ public class MainActivity extends AppCompatActivity {
 
         // Declare our UI elements
         memeSpinner = findViewById(R.id.spnMemes);
-        submitButton = findViewById(R.id.btnSubmit);
         topText = findViewById(R.id.editTextTopText);
         bottomText = findViewById(R.id.editTextBottomText);
         memeImg = findViewById(R.id.imgMemePreview);
@@ -97,27 +96,28 @@ public class MainActivity extends AppCompatActivity {
                 //TODO Auto generated
             }
         });
-
         // Generate meme onClick listener
-        submitButton.setOnClickListener(v -> {
-            // Get the data needed for our POST request
-            String topTextInput = topText.getText().toString();
-            String bottomTextInput = bottomText.getText().toString();
-            int memePosition = memeSpinner.getSelectedItemPosition();
-            int memeID = memes.get(memePosition).id;
-            // Make sure that the user input isn't blank
-            if(topTextInput.length() < 1 || bottomTextInput.length() < 1) return;
+        memeImg.setOnTouchListener(new OnSwipeTouchListener(this) {
+            @Override
+            public void swipeLeft() {
+                // Get the data needed for our POST request
+                String topTextInput = topText.getText().toString();
+                String bottomTextInput = bottomText.getText().toString();
+                int memePosition = memeSpinner.getSelectedItemPosition();
+                int memeID = memes.get(memePosition).id;
+                // Make sure that the user input isn't blank
+                if(topTextInput.length() < 1 || bottomTextInput.length() < 1) return;
 
-            apiRequester.getMeme(memeID, topTextInput, bottomTextInput, new VolleyCallBack() {
-                @Override
-                public void onSuccess(Object data) {
-                    String url = (String) data;
-                    Intent resultsScreen = new Intent(MainActivity.this, MemeScreen.class);
-                    resultsScreen.putExtra("IMG_URL", url);
-                    startActivity(resultsScreen);
-                }
-            });
-
+                apiRequester.getMeme(memeID, topTextInput, bottomTextInput, new VolleyCallBack() {
+                    @Override
+                    public void onSuccess(Object data) {
+                        String url = (String) data;
+                        Intent resultsScreen = new Intent(MainActivity.this, MemeScreen.class);
+                        resultsScreen.putExtra("IMG_URL", url);
+                        startActivity(resultsScreen);
+                    }
+                });
+            }
         });
         // Calls our onItemSelectedListener so that we start with an image
         memeSpinner.setSelection(0);

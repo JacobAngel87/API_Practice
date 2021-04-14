@@ -81,17 +81,4 @@
         app:layout_constraintTop_toBottomOf="@+id/txtBottomText"
         tools:layout_editor_absoluteX="138dp" />
 
-    <Button
-        android:id="@+id/btnSubmit"
-        android:layout_width="0dp"
-        android:layout_height="71dp"
-        android:layout_marginTop="15dp"
-        android:text="@string/generate_button"
-        android:textColor="@color/white"
-        android:textSize="18sp"
-        app:backgroundTint="@color/blueBg"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextBottomText" />
 </androidx.constraintlayout.widget.ConstraintLayout>
